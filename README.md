@@ -106,6 +106,24 @@ The Lambda execution role needs:
 - `AmazonRDSReadOnlyAccess`
 - `CloudWatchLogsFullAccess`
 
+## Posture Assessment Dashboard
+
+When executed locally, the CSPM engine audits multi-domain infrastructure configurations (S3, EC2 Security Groups, and IAM Policies), compiling an executive summary alongside prioritized compliance violations directly to the terminal console:
+
+![Local Scan Dashboard](docs/screenshots/scan-dashboard.png)
+
+---
+
+## ☁️ AWS Lambda Orchestration & Cloud Deployment
+
+The tool features a fully compiled AWS Lambda request handler, allowing for automated, scheduled, or event-driven infrastructure security audits in the cloud.
+
+### Successful Lambda Execution Context
+![AWS Lambda Success](docs/screenshots/lambda-success.png)
+
+### Cloud Audit Metrics Output Log
+![AWS Lambda Audit Results](docs/screenshots/lambda-audit-result.png)
+
 ---
 
 ## Author
