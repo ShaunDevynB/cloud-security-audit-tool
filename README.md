@@ -106,26 +106,24 @@ The Lambda execution role needs:
 - `AmazonRDSReadOnlyAccess`
 - `CloudWatchLogsFullAccess`
 
-## Posture Assessment Dashboard
+## Posture Assessment Dashboard (Local CLI)
 
-When executed locally, the CSPM engine audits multi-domain infrastructure configurations (S3, EC2 Security Groups, and IAM Policies), compiling an executive summary alongside prioritized compliance violations directly to the terminal console:
+When executed locally via the command line, the core CSPM engine directly coordinates rule checks across your S3, EC2 Security Groups, and IAM Policies, outputting a prioritized summary report straight to the console:
 
 ![Local Scan Dashboard](docs/screenshots/scan-dashboard.png)
 
 ---
 
-## ☁️ AWS Lambda Orchestration & Cloud Deployment
+## ☁️ Serverless AWS Lambda Orchestration
 
-The tool features a fully compiled AWS Lambda request handler, allowing for automated, scheduled, or event-driven infrastructure security audits in the cloud.
+This project features a compiled native AWS Lambda request handler, enabling the tool to run as a serverless microservice. This allows for automated, event-driven posture audits triggered by AWS EventBridge cron schedules or CloudTrail security alerts.
 
-### Successful Lambda Execution Context
+### AWS Lambda Context Invocation
+The cloud function triggers seamlessly inside the AWS environment, completing the full multi-domain resource audit within standard serverless runtime boundaries:
+
 ![AWS Lambda Success](docs/screenshots/lambda-success.png)
 
-### Cloud Audit Metrics Output Log
+### Cloud Execution Results Log
+When running in the cloud, the tool pipes execution metrics and JSON-formatted vulnerability reports directly to Amazon CloudWatch logs for permanent record-keeping:
+
 ![AWS Lambda Audit Results](docs/screenshots/lambda-audit-result.png)
-
----
-
-## Author
-
-**Shaun Boadi** — [github.com/ShaunDevynB](https://github.com/ShaunDevynB)
