@@ -36,34 +36,15 @@ A production-grade **Cloud Security Posture Management (CSPM)** engine built wit
 ---
 
 ## Architecture
-Amazon EventBridge (daily cron: 9am UTC)
-
-↓
-
-AWS Lambda Function
-
-(Java 17 · ARM64 · 512MB · 5min timeout)
-
-↓
-
-SecurityAuditLambdaHandler
-
-↓
-
-CloudSecurityAuditService
-
-↓
-
-┌──────────────┬───────────────────┬──────────────┬────────────────────────┐
-
-│S3BucketScanner│SecurityGroupScanner│IamRoleScanner│StorageEncryptionScanner│
-
-└──────────────┴───────────────────┴──────────────┴────────────────────────┘
-
-↓
-
-AuditReport (JSON) → Amazon CloudWatch Logs
----
+1. **Amazon EventBridge** triggers the Lambda function daily at 9am UTC
+2. **AWS Lambda** (Java 17, ARM64, 512MB) receives the event
+3. **SecurityAuditLambdaHandler** initializes the audit
+4. **CloudSecurityAuditService** coordinates four parallel scanners:
+   - `S3BucketScanner` — checks public access settings and ACLs
+   - `SecurityGroupScanner` — checks open ports (SSH, RDP, databases)
+   - `IamRoleScanner` — checks for over-privileged roles and policies
+   - `StorageEncryptionScanner` — checks EBS volumes and RDS instances
+5. **AuditReport** is compiled and logged as JSON to **Amazon CloudWatch**
 
 ## Tech Stack
 
