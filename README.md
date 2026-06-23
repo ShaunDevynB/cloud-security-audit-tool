@@ -45,6 +45,8 @@ A production-grade **Cloud Security Posture Management (CSPM)** engine built wit
    - `IamRoleScanner` — checks for over-privileged roles and policies
    - `StorageEncryptionScanner` — checks EBS volumes and RDS instances
 5. **AuditReport** is compiled and logged as JSON to **Amazon CloudWatch**
+   
+---
 
 ## Tech Stack
 
